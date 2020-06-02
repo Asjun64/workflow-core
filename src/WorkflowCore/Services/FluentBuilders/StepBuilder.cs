@@ -188,6 +188,15 @@ namespace WorkflowCore.Services
             return stepBuilder;
         }
 
+        /// <summary>
+        /// 等待事件
+        /// 根据 eventName 和 eventKey 来确定事件
+        /// </summary>
+        /// <param name="eventName">事件名</param>
+        /// <param name="eventKey">事件key</param>
+        /// <param name="effectiveDate"></param>
+        /// <param name="cancelCondition">取消条件</param>
+        /// <returns></returns>
         public IStepBuilder<TData, WaitFor> WaitFor(string eventName, Expression<Func<TData, IStepExecutionContext, string>> eventKey, Expression<Func<TData, DateTime>> effectiveDate = null, Expression<Func<TData, bool>> cancelCondition = null)
         {
             var newStep = new WorkflowStep<WaitFor>();

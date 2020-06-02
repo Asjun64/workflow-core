@@ -51,13 +51,14 @@ namespace WorkflowCore.Services
         public async Task<string> StartWorkflow<TData>(string workflowId, int? version, TData data = null, string reference=null)
             where TData : class, new()
         {
-
+            // 获取工作流定义
             var def = _registry.GetDefinition(workflowId, version);
             if (def == null)
             {
                 throw new WorkflowNotRegisteredException(workflowId, version);
             }
 
+            // 生成工作流实例
             var wf = new WorkflowInstance
             {
                 WorkflowDefinitionId = workflowId,
@@ -78,6 +79,7 @@ namespace WorkflowCore.Services
                     wf.Data = def.DataType.GetConstructor(new Type[0]).Invoke(new object[0]);
             }
 
+            // 构建初始节点并将其加入执行列表中
             wf.ExecutionPointers.Add(_pointerFactory.BuildGenesisPointer(def));
 
             string id = await _persistenceStore.CreateNewWorkflow(wf);

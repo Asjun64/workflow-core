@@ -6,11 +6,12 @@ using WorkflowCore.Interface;
 
 namespace WorkflowCore.Services
 {
-    #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 
     /// <summary>
-    /// Single node in-memory implementation of IQueueProvider
+    /// IQueueProvider 的单节点的内存中的实现
     /// </summary>
+    /// Single node in-memory implementation of IQueueProvider
     public class SingleNodeQueueProvider : IQueueProvider
     {
         

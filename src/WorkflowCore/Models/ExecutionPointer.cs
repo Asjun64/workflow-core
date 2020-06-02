@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace WorkflowCore.Models
@@ -55,14 +56,23 @@ namespace WorkflowCore.Models
 
     public enum PointerStatus
     {
+        [Description("遗留")]
         Legacy = 0,
-        Pending = 1,
-        Running = 2,
-        Complete = 3,
-        Sleeping = 4,
-        WaitingForEvent = 5,
-        Failed = 6,
-        Compensated = 7,
-        Cancelled = 8
+        [Description("挂起")]
+        Pending = 1,        // 挂起
+        [Description("运行")]
+        Running = 2,        // 运行
+        [Description("完成")]
+        Complete = 3,       // 完成
+        [Description("睡眠")]
+        Sleeping = 4,       // 睡眠
+        [Description("等待")]
+        WaitingForEvent = 5,    // 等待事件
+        [Description("失败")]
+        Failed = 6,         // 失败
+        [Description("补偿")]
+        Compensated = 7,    
+        [Description("取消")]
+        Cancelled = 8       // 取消
     }
 }

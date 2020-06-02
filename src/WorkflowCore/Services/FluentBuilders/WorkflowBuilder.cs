@@ -58,6 +58,11 @@ namespace WorkflowCore.Services
             }
         }
 
+        /// <summary>
+        /// 附加分支
+        /// </summary>
+        /// 将分支包含的步骤加入进来，并将其 Id 更新为新的 Id，避免与原有步骤的 Id 冲突
+        /// <param name="branch"></param>
         public void AttachBranch(IWorkflowBuilder branch)
         {
             if (Branches.Contains(branch))

@@ -7,6 +7,9 @@ using WorkflowCore.Models;
 
 namespace WorkflowCore.Services
 {
+    /// <summary>
+    /// 工作流注册表的实现
+    /// </summary>
     public class WorkflowRegistry : IWorkflowRegistry
     {
         private readonly IServiceProvider _serviceProvider;
@@ -17,6 +20,12 @@ namespace WorkflowCore.Services
             _serviceProvider = serviceProvider;
         }
 
+        /// <summary>
+        /// 根据 Id 和 版本号获取工作流定义
+        /// </summary>
+        /// <param name="workflowId"></param>
+        /// <param name="version"></param>
+        /// <returns></returns>
         public WorkflowDefinition GetDefinition(string workflowId, int? version = null)
         {
             if (version.HasValue)

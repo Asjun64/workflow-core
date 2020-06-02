@@ -17,6 +17,7 @@ namespace WorkflowCore.Interface
         void RegisterWorkflow<TWorkflow, TData>() where TWorkflow : IWorkflow<TData>, new() where TData : new();
 
         /// <summary>
+        /// 暂停工作流实例
         /// Suspend the execution of a given workflow until .ResumeWorkflow is called
         /// </summary>
         /// <param name="workflowId"></param>
@@ -24,6 +25,7 @@ namespace WorkflowCore.Interface
         Task<bool> SuspendWorkflow(string workflowId);
 
         /// <summary>
+        /// 恢复被暂停的工作流实例
         /// Resume a previously suspended workflow
         /// </summary>
         /// <param name="workflowId"></param>
@@ -31,6 +33,7 @@ namespace WorkflowCore.Interface
         Task<bool> ResumeWorkflow(string workflowId);
 
         /// <summary>
+        /// 终止工作流实例
         /// Permanently terminate the exeuction of a given workflow
         /// </summary>
         /// <param name="workflowId"></param>
