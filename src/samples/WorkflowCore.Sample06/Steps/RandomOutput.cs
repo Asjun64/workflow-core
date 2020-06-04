@@ -13,6 +13,7 @@ namespace WorkflowCore.Sample06.Steps
         {
             Random rnd = new Random();
             int value = rnd.Next(2);
+            Console.WriteLine(context.Step.Name);
             Console.WriteLine("Generated random value {0}", value);
             return ExecutionResult.Outcome(value);
         }

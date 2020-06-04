@@ -230,7 +230,7 @@ namespace WorkflowCore.Services
                 throw new InvalidOperationException($"Parent step of name {name} is not of type {typeof(TStep)}");
             }
 
-            return new StepBuilder<TData, TStep>(WorkflowBuilder, (ancestor as WorkflowStep<TStep>));
+            return new StepBuilder<TData, TStep>(WorkflowBuilder, ancestor as WorkflowStep<TStep>);
         }
 
         public IStepBuilder<TData, TStepBody> OnError(WorkflowErrorHandling behavior, TimeSpan? retryInterval = null)
@@ -240,6 +240,12 @@ namespace WorkflowCore.Services
             return this;
         }
 
+        /// <summary>
+        /// 获取祖先步骤
+        /// </summary>
+        /// <param name="id">查找时的初始子孙步骤 id</param>
+        /// <param name="name">目标步骤的名称</param>
+        /// <returns></returns>
         private WorkflowStep IterateParents(int id, string name)
         {
             // Todo: filter out circular paths

@@ -28,6 +28,11 @@ namespace WorkflowCore.Interface
 
         IStepBuilder<TData, ActionStepBody> StartWith(Action<IStepExecutionContext> body);
 
+        /// <summary>
+        /// 获取上一级步骤
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         IEnumerable<WorkflowStep> GetUpstreamSteps(int id);
 
         IWorkflowBuilder<TData> UseDefaultErrorBehavior(WorkflowErrorHandling behavior, TimeSpan? retryInterval = null);

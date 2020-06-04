@@ -15,12 +15,12 @@ namespace WorkflowCore.Sample10
         {
             builder
                 .StartWith<SayHello>()
-                .While(data => data.Counter < 3)
+                .While(data => data.Counter < 10)
                     .Do(x => x
                         .StartWith<DoSomething>()
                         .Then<IncrementStep>()
                             .Input(step => step.Value1, data => data.Counter)
-                            .Output(data => data.Counter, step => step.Value2))
+                            .Output(data => data.Counter, step => step.Value1))
                 .Then<SayGoodbye>();
         }        
     }

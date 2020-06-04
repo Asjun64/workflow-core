@@ -18,7 +18,7 @@ namespace WorkflowCore.Sample07
         {
             services.AddLogging();
             services.AddWorkflow(x => x.UseMongoDB(@"mongodb://localhost:27017", "workflow"));
-            services.AddMvc();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         
@@ -36,7 +36,6 @@ namespace WorkflowCore.Sample07
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseMvc(); 
         }
     }

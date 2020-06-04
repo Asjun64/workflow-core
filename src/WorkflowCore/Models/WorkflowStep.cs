@@ -83,6 +83,10 @@ namespace WorkflowCore.Models
         }
     }
 
+    /// <summary>
+    /// What? 多一个类的意义何在
+    /// </summary>
+    /// <typeparam name="TStepBody"></typeparam>
     public class WorkflowStep<TStepBody> : WorkflowStep
         where TStepBody : IStepBody 
     {

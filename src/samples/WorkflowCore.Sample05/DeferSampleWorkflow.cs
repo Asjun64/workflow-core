@@ -23,7 +23,7 @@ namespace WorkflowCore.Sample05
                     return ExecutionResult.Next();
                 })
                 .Then<SleepStep>()
-                    .Input(step => step.Period, data => TimeSpan.FromSeconds(20))
+                    .Input(step => step.Period, data => TimeSpan.FromSeconds(1))
                 .Then(context =>
                 {
                     Console.WriteLine("workflow complete");

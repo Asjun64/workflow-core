@@ -14,6 +14,7 @@ namespace WorkflowCore.Sample10
         public override ExecutionResult Run(IStepExecutionContext context)
         {
             Value2 = Value1 + 1;
+            Value1 = Value1 + 2;
             return ExecutionResult.Next();
         }
     }

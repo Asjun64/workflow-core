@@ -17,14 +17,28 @@ namespace WorkflowCore.Sample06
         {
             builder
                 .StartWith<RandomOutput>(x => x.Name("Random Step"))
-                    .When(0)
+                    .When(data => 0).Do(then => then
+                        .StartWith(context => { Console.WriteLine(context.Step.Name); })
+                        .Name("branch A")
                         .Then<TaskA>()
-                        .Then<TaskB>()                        
-                        .End<RandomOutput>("Random Step")
-                    .When(1)
+                        .Then<TaskB>()
+                        .Then<RandomOutput>(x => x.Name("Branch A: Random Step"))
+                        .When(data => 0).Do(then2 => then2
+                            .StartWith<RandomOutput>(x => x.Name("Branch A->A"))
+                            .Id("Branch A")
+                            .Then<SleepStep>(x =>  x.Name("Sleep A->A"))
+                            .End<RandomOutput>("Branch A->A"))
+                        .When(data => 1).Do(then2 => then2
+                            .StartWith<RandomOutput>(x => x.Name("Branch A->B"))
+                            .Then<SleepStep>(x => x.Name("Sleep A->B"))
+                            .End<RandomOutput>("Branch A->B")))
+                    .When(data => 1).Do(then => then
+                        .StartWith(context => { Console.WriteLine(context.Step.Name); })
+                        .Name("branch C")
                         .Then<TaskC>()
                         .Then<TaskD>()
-                        .End<RandomOutput>("Random Step");
+                        .Attach("Branch A"))
+                    .End<RandomOutput>("Random Step");
         }
     }
 }
